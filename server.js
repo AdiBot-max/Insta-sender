@@ -1,7 +1,8 @@
-// npm i ws
 const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 8080 });
+const PORT = process.env.PORT || 8080;
+
+const wss = new WebSocket.Server({ port: PORT });
 const clients = new Set();
 
 wss.on("connection", ws => {
@@ -18,4 +19,4 @@ wss.on("connection", ws => {
   ws.on("close", () => clients.delete(ws));
 });
 
-console.log("🚀 Chat server running on ws://localhost:8080");
+console.log("🚀 WebSocket running on port", PORT);
